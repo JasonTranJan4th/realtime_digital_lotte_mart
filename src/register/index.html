@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phiếu đăng ký</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="flex">
+        <!-- Left Pane -->
+        <div class="hidden lg:flex items-center justify-center flex-1 bg-bg-color">
+            <div class="w-48 h-48">
+                <img src="../../images/logo-l.svg" alt="">
+            </div>
+        </div>
+        <!-- Right Pane -->
+        <div class="bg-gray-100 flex items-center justify-center flex-1">
+            <div class="max-w-md w-full p-6">
+                <h1 class="text-2xl md:text-3xl font-semibold mb-6 text-black text-center">Phiếu Đăng Ký Thông Tin</h1>
+                <form id="registerForm" class="space-y-4">
+                    <div>
+                        <label for="drivername" class="block text-sm font-medium text-gray-700">Tên tài xế</label>
+                        <input type="text" id="drivername" name="drivername"
+                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                    </div>
+                    <div>
+                        <label for="tel" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
+                        <input type="text" id="tel" name="tel"
+                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                    </div>
+                    <div>
+                        <label for="vehiclenumber" class="block text-sm font-medium text-gray-700">Biển số xe</label>
+                        <input type="text" id="vehiclenumber" name="vehiclenumber" placeholder="VD: 59Y1-12345"
+                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                    </div>
+                    <div>
+                        <label for="typeofvehicle" class="block text-sm font-medium text-gray-700">Loại xe</label>
+                        <select id="typeofvehicle" name="typeofvehicle"
+                            class="mt-1 p-2 w-full border text-sm rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                            required>
+                            <option value="">---- Chọn ----</option>
+                            <option value="bike">Xe máy</option>
+                            <option value="truck">Xe tải</option>
+                            <option value="cooler">Xe lạnh</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="typeofshipping" class="block text-sm font-medium text-gray-700">Loại hình nhà cung
+                            cấp</label>
+                        <select id="typeofshipping" name="typeofshipping"
+                            class="mt-1 p-2 w-full border text-sm rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                            required>
+                            <option value="">---- Chọn ----</option>
+                            <option value="kygui">Ký gửi</option>
+                            <option value="tructiep">Nhập trực tiếp</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="producttype" class="block text-sm font-medium text-gray-700">Loại hàng</label>
+                        <select id="producttype" name="producttype"
+                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                            required>
+                            <option value="">---- Chọn ----</option>
+                            <option value="hot">Nóng</option>
+                            <option value="cool">Lạnh</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="suppilername" class="block text-sm font-medium text-gray-700">Mã và tên nhà cung
+                            cấp</label>
+                        <textarea id="suppilername" name="suppilername" rows="2"
+                            placeholder="VD: Mã nhà cung cấp-Tên nhà cung cấp"
+                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"></textarea>
+                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                    </div>
+                    <div>
+                        <button name="submit"
+                            class="w-full bg-bg-color text-white text-sm p-2 rounded-md hover:bg-gray-800 focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300">Đăng
+                            ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="register.js"></script>
+</body>
+
+</html>
