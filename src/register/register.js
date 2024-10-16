@@ -1,13 +1,14 @@
 import * as yup from 'yup';
+import registerApi from '../../api/registerApi';
 
 
 function getPostSchema() {
     const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
     return yup.object().shape({
-        drivername: yup.string().required('Vui lòng nhập họ & tên').min(3, 'Username must be at least 3 characters'),
-        tel: yup.string().required('Vui lòng nhập số điện thoại').matches(phoneRegExp, 'Phone number is not valid'),
-        vehiclenumber: yup.string().required('Vui lòng nhập biển số xe'),
-        suppilername: yup.string().required('Vui lòng điền thông tin NCC'),
+        driver_name: yup.string().required('Vui lòng nhập họ & tên'),
+        driver_contact_phone: yup.string().required('Vui lòng nhập số điện thoại').matches(phoneRegExp, 'Số điện thoại không hợp lệ'),
+        license_plate: yup.string().required('Vui lòng nhập biển số xe'),
+        supplier: yup.string().required('Vui lòng điền thông tin NCC'),
     });
 }
 
@@ -28,13 +29,36 @@ async function validatePostForm(form, formValues) {
     try {
 
         //reset previous errors
-        ['drivername', 'tel', 'vehiclenumber', 'suppilername'].forEach((name) => setFieldError(form, name, ''));
+        ['driver_name', 'driver_contact_phone', 'license_plate', 'supplier'].forEach((name) => setFieldError(form, name, ''));
 
         const schema = getPostSchema();
         await schema.validate(formValues, { abortEarly: false });
 
-        console.log('Form submitted successfully:', formValues);
-        form.reset();
+        try {
+
+            const { data } = await registerApi.register(JSON.stringify(formValues));
+
+            if (data) {
+                const success_modal = document.querySelector(".success_modal");
+                if (success_modal) {
+                    const success_modal_noti = success_modal.querySelector(".success_modal_noti");
+                    if (success_modal_noti) {
+                        success_modal_noti.textContent = `${formValues.license_plate} đăng ký thành công!`;
+                    }
+                    success_modal.classList.remove("hidden");
+
+                    const modal_btn = document.getElementById("success_model_btn");
+                    if (modal_btn) {
+                        modal_btn.addEventListener("click", () => {
+                            success_modal.classList.add("hidden");
+                            form.reset();
+                        })
+                    }
+                }
+            }
+        } catch (error) {
+            alert("Đăng ký không thành công!")
+        }
 
     } catch (error) {
         // console.log("1", error.name);
@@ -85,7 +109,7 @@ async function validateFormField(form, formValues, name) {
 }
 
 function initValidationOnChange(form) {
-    ['drivername', 'tel', 'vehiclenumber', 'suppilername'].forEach((name) => {
+    ['driver_name', 'driver_contact_phone', 'license_plate', 'supplier'].forEach((name) => {
         const field = form.querySelector(`[name=${name}]`);
         if (field) {
             field.addEventListener('input', (e) => {
@@ -108,6 +132,7 @@ function initValidationOnChange(form) {
 
         const formData = new FormData(registerForm);
         const formValues = Object.fromEntries(formData.entries());
+        // console.log(JSON.stringify(formValues));
 
         await validatePostForm(registerForm, formValues);
     })

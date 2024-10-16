@@ -12,84 +12,116 @@
 </head>
 
 <body>
-    <div class="flex">
-        <!-- Left Pane -->
-        <div class="hidden lg:flex items-center justify-center flex-1 bg-bg-color">
-            <div class="w-48 h-48">
-                <img src="../../images/logo-l.svg" alt="">
+    <div class="wrapper relative">
+        <div class="flex">
+            <!-- Left Pane -->
+            <div class="hidden lg:flex items-center justify-center flex-1 bg-bg-color">
+                <div class="w-48 h-48">
+                    <img src="../../images/logo-l.svg" alt="">
+                </div>
+            </div>
+            <!-- Right Pane -->
+            <div class="bg-gray-100 flex items-center justify-center flex-1">
+                <div class="max-w-md w-full p-6">
+                    <h1 class="text-2xl md:text-3xl font-semibold mb-6 text-black text-center">Phiếu Đăng Ký Thông Tin
+                    </h1>
+                    <form id="registerForm" class="space-y-4">
+                        <div>
+                            <label for="driver_name" class="block text-sm font-medium text-gray-700">Tên tài xế</label>
+                            <input type="text" id="driver_name" name="driver_name"
+                                class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                            <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                        </div>
+                        <div>
+                            <label for="driver_contact_phone" class="block text-sm font-medium text-gray-700">Số điện
+                                thoại</label>
+                            <input type="text" id="driver_contact_phone" name="driver_contact_phone"
+                                class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                            <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                        </div>
+                        <div>
+                            <label for="license_plate" class="block text-sm font-medium text-gray-700">Biển số
+                                xe</label>
+                            <input type="text" id="license_plate" name="license_plate" placeholder="VD: 59Y1-12345"
+                                class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                            <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                        </div>
+                        <div>
+                            <label for="vehicle_type" class="block text-sm font-medium text-gray-700">Loại xe</label>
+                            <select id="vehicle_type" name="vehicle_type"
+                                class="mt-1 p-2 w-full border text-sm rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                                required>
+                                <option value="">---- Chọn ----</option>
+                                <option value="bike">Xe máy</option>
+                                <option value="truck">Xe tải</option>
+                                <option value="cooler">Xe lạnh</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="shipping_type" class="block text-sm font-medium text-gray-700">Loại hình nhà
+                                cung
+                                cấp</label>
+                            <select id="shipping_type" name="shipping_type"
+                                class="mt-1 p-2 w-full border text-sm rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                                required>
+                                <option value="">---- Chọn ----</option>
+                                <option value="kygui">Ký gửi</option>
+                                <option value="tructiep">Nhập trực tiếp</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="product_type" class="block text-sm font-medium text-gray-700">Loại hàng</label>
+                            <select id="product_type" name="product_type"
+                                class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                                required>
+                                <option value="">---- Chọn ----</option>
+                                <option value="hot">Nóng</option>
+                                <option value="cool">Lạnh</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="supplier" class="block text-sm font-medium text-gray-700">Mã và tên nhà cung
+                                cấp</label>
+                            <textarea id="supplier" name="supplier" rows="2"
+                                placeholder="VD: Mã nhà cung cấp-Tên nhà cung cấp"
+                                class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"></textarea>
+                            <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+                        </div>
+                        <div>
+                            <button name="submit"
+                                class="w-full bg-bg-color text-white text-sm p-2 rounded-md hover:bg-gray-800 focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300">Đăng
+                                ký</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <!-- Right Pane -->
-        <div class="bg-gray-100 flex items-center justify-center flex-1">
-            <div class="max-w-md w-full p-6">
-                <h1 class="text-2xl md:text-3xl font-semibold mb-6 text-black text-center">Phiếu Đăng Ký Thông Tin</h1>
-                <form id="registerForm" class="space-y-4">
-                    <div>
-                        <label for="drivername" class="block text-sm font-medium text-gray-700">Tên tài xế</label>
-                        <input type="text" id="drivername" name="drivername"
-                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
-                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
+
+        <div class="success_modal hidden absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+            <div class="w-96 h-full md:h-auto">
+                <!-- Modal content -->
+                <div class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                    <div
+                        class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 p-2 flex items-center justify-center mx-auto mb-3.5">
+                        <svg aria-hidden="true" class="w-8 h-8 text-green-500 dark:text-green-400" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Success</span>
                     </div>
-                    <div>
-                        <label for="tel" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
-                        <input type="text" id="tel" name="tel"
-                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
-                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
-                    </div>
-                    <div>
-                        <label for="vehiclenumber" class="block text-sm font-medium text-gray-700">Biển số xe</label>
-                        <input type="text" id="vehiclenumber" name="vehiclenumber" placeholder="VD: 59Y1-12345"
-                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
-                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
-                    </div>
-                    <div>
-                        <label for="typeofvehicle" class="block text-sm font-medium text-gray-700">Loại xe</label>
-                        <select id="typeofvehicle" name="typeofvehicle"
-                            class="mt-1 p-2 w-full border text-sm rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
-                            required>
-                            <option value="">---- Chọn ----</option>
-                            <option value="bike">Xe máy</option>
-                            <option value="truck">Xe tải</option>
-                            <option value="cooler">Xe lạnh</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="typeofshipping" class="block text-sm font-medium text-gray-700">Loại hình nhà cung
-                            cấp</label>
-                        <select id="typeofshipping" name="typeofshipping"
-                            class="mt-1 p-2 w-full border text-sm rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
-                            required>
-                            <option value="">---- Chọn ----</option>
-                            <option value="kygui">Ký gửi</option>
-                            <option value="tructiep">Nhập trực tiếp</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="producttype" class="block text-sm font-medium text-gray-700">Loại hàng</label>
-                        <select id="producttype" name="producttype"
-                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
-                            required>
-                            <option value="">---- Chọn ----</option>
-                            <option value="hot">Nóng</option>
-                            <option value="cool">Lạnh</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="suppilername" class="block text-sm font-medium text-gray-700">Mã và tên nhà cung
-                            cấp</label>
-                        <textarea id="suppilername" name="suppilername" rows="2"
-                            placeholder="VD: Mã nhà cung cấp-Tên nhà cung cấp"
-                            class="mt-1 p-2 w-full text-sm border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"></textarea>
-                        <div class="invalid-feedback mt-1 text-sm text-red-600"></div>
-                    </div>
-                    <div>
-                        <button name="submit"
-                            class="w-full bg-bg-color text-white text-sm p-2 rounded-md hover:bg-gray-800 focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300">Đăng
-                            ký</button>
-                    </div>
-                </form>
+                    <p class="success_modal_noti mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                        Đăng ký thành công
+                    </p>
+                    <button id="success_model_btn" data-modal-toggle="successModal" type="button"
+                        class="py-2 px-3 text-sm font-medium text-center text-white rounded-lg bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-900">
+                        Đóng
+                    </button>
+                </div>
             </div>
         </div>
+
     </div>
     <script type="module" src="register.js"></script>
 </body>
