@@ -36,7 +36,7 @@ import vehicleInfo from "../../api/vehicleInfo";
                 }
             }
 
-            alert("Không tìm thấy thông tin! Hoặc nhập sai cú pháp!\nNhập lại theo ví dụ: 54Y1-12345")
+            alert("Chưa được cấp số! Hoặc nhập sai cú pháp!\nNhập lại biển số xe theo ví dụ: 54Y1-12345")
         }
     })
 })();
