@@ -7,7 +7,7 @@ function getPostSchema() {
     return yup.object().shape({
         driver_name: yup.string().required('Vui lòng nhập họ & tên'),
         driver_contact_phone: yup.string().required('Vui lòng nhập số điện thoại').matches(phoneRegExp, 'Số điện thoại không hợp lệ'),
-        license_plate: yup.string().required('Vui lòng nhập biển số xe'),
+        license_plate: yup.string().required('Vui lòng nhập biển số xe').matches(/^.+-.+$/, 'Biển số xe sai cú pháp VD: 54Y1-12345'),
         supplier: yup.string().required('Vui lòng điền thông tin NCC'),
     });
 }
