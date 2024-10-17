@@ -74,7 +74,7 @@ const initLoadData = (data, type) => {
             // console.log("run")
 
         } catch (error) {
-            console.log("Failed to fetch data from server");
+            console.log("Failed to fetch data from server", error);
         }
 
         setTimeout(fetchDataAndReload, 3000);
