@@ -31,7 +31,7 @@ const addMoreLine = (data, type) => {
 
 const initExtractSupplierCode = (data) => {
     data.map((x) => {
-        x.supplier = x.supplier.split("\n").map(x => x.split("-")[0]).join(", ");
+        x.supplier = x.supplier.split("\n").map(x => x.split("-")[0]).join(", ").toUpperCase();
     })
 }
 

@@ -7,7 +7,7 @@ function getPostSchema() {
     return yup.object().shape({
         driver_name: yup.string().required('Vui lòng nhập họ & tên'),
         driver_contact_phone: yup.string().required('Vui lòng nhập số điện thoại').matches(phoneRegExp, 'Số điện thoại không hợp lệ'),
-        license_plate: yup.string().required('Vui lòng nhập biển số xe').matches(/^.+-.+$/, 'Biển số xe sai cú pháp VD: 54Y1-12345'),
+        license_plate: yup.string().required('Vui lòng nhập biển số xe').matches(/^\d{2}[a-zA-Z]([a-zA-Z]|\d)?-\d{4,5}$/, 'Biển số sai cú pháp VD: 54Y1-12345 hoặc 53C-12345'),
         supplier: yup.string().required('Vui lòng điền thông tin NCC'),
     });
 }
@@ -132,6 +132,8 @@ function initValidationOnChange(form) {
 
         const formData = new FormData(registerForm);
         const formValues = Object.fromEntries(formData.entries());
+
+        formValues.license_plate = formValues.license_plate.toUpperCase();
         // console.log(JSON.stringify(formValues));
 
         await validatePostForm(registerForm, formValues);
