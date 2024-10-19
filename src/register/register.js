@@ -121,6 +121,29 @@ function initValidationOnChange(form) {
 }
 
 (() => {
+
+    const navList = document.querySelectorAll("ol li");
+    for (let i = 0; i < navList.length; i++) {
+        const navEle = navList[i];
+
+        navEle.addEventListener('click', () => {
+            const eleAttr = navEle.getAttribute("id");
+            switch (eleAttr) {
+                case "nav-main":
+                    window.location.assign("/");
+                    break;
+                case "nav-register":
+                    window.location.assign("/src/register/");
+                    break;
+                case "nav-search":
+                    window.location.assign("/src/search/");
+                    break;
+                default:
+                    break;
+            }
+        })
+    }
+
     const registerForm = document.getElementById("registerForm");
 
     if (!registerForm) return;
