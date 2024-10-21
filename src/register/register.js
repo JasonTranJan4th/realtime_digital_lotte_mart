@@ -7,8 +7,14 @@ function getPostSchema() {
     return yup.object().shape({
         driver_name: yup.string().required('Vui lòng nhập họ & tên'),
         driver_contact_phone: yup.string().required('Vui lòng nhập số điện thoại').matches(phoneRegExp, 'Số điện thoại không hợp lệ'),
-        license_plate: yup.string().required('Vui lòng nhập biển số xe').matches(/^\d{2}[a-zA-Z]([a-zA-Z]|\d)?-\d{4,5}$/, 'Biển số sai cú pháp VD: 54Y1-12345 hoặc 53C-12345'),
-        supplier: yup.string().required('Vui lòng điền thông tin NCC'),
+        license_plate: yup.string().required('Vui lòng nhập biển số xe').matches(/^\d{2}[A-Za-z]([A-Za-z]|\d)?\d{4,5}$/, 'Biển số sai cú pháp'),
+        supplier: yup.string().required('Vui lòng điền thông tin NCC').test('is-valid-format', 'Nhập theo cú pháp Mã NCC-Tên NCC"', (value) => {
+            if (!value) return true
+            const lines = value.split('\n')
+            return lines.every(line => {
+                return line === '' || /^[a-zA-Z0-9 ]+-.+$/.test(line)
+            })
+        }),
     });
 }
 
@@ -43,7 +49,7 @@ async function validatePostForm(form, formValues) {
                 if (success_modal) {
                     const success_modal_noti = success_modal.querySelector(".success_modal_noti");
                     if (success_modal_noti) {
-                        success_modal_noti.textContent = `${formValues.license_plate} đăng ký thành công!`;
+                        success_modal_noti.textContent = `${formValues.license_plate} đăng ký thành công tại Lotte Nam Sài Gòn!`;
                     }
                     success_modal.classList.remove("hidden");
 

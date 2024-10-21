@@ -31,7 +31,7 @@ const addMoreLine = (data, type) => {
 
 const initExtractSupplierCode = (data) => {
     data.map((x) => {
-        x.supplier = x.supplier.split("\n").map(x => x.split("-")[0]).join(", ").toUpperCase();
+        x.supplier = x.supplier.split("\n").map(x => x.split("-")[0].trim()).join(", ").toUpperCase();
     })
 }
 
@@ -62,30 +62,30 @@ const initLoadData = (data, type) => {
 }
 
 (() => {
+
+    const navList = document.querySelectorAll("ol li");
+    for (let i = 0; i < navList.length; i++) {
+        const navEle = navList[i];
+
+        navEle.addEventListener('click', () => {
+            const eleAttr = navEle.getAttribute("id");
+            switch (eleAttr) {
+                case "nav-main":
+                    window.location.assign("/");
+                    break;
+                case "nav-register":
+                    window.location.assign("/src/register/");
+                    break;
+                case "nav-search":
+                    window.location.assign("/src/search/");
+                    break;
+                default:
+                    break;
+            }
+        })
+    }
+
     async function fetchDataAndReload() {
-
-        const navList = document.querySelectorAll("ol li");
-        for (let i = 0; i < navList.length; i++) {
-            const navEle = navList[i];
-
-            navEle.addEventListener('click', () => {
-                const eleAttr = navEle.getAttribute("id");
-                switch (eleAttr) {
-                    case "nav-main":
-                        window.location.assign("/");
-                        break;
-                    case "nav-register":
-                        window.location.assign("/src/register/");
-                        break;
-                    case "nav-search":
-                        window.location.assign("/src/search/");
-                        break;
-                    default:
-                        break;
-                }
-            })
-        }
-
         try {
 
             const { data } = await vehicleQueueApi.getAll();

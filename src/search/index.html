@@ -52,12 +52,12 @@
             </ol>
         </nav>
 
-        <div class="flex flex-col items-center justify-center px-6 py-8 lg:py-0 md:translate-y-[40%]">
-            <img class="w-28 h-28 mb-5" src="../../images/logo-l.svg" alt="logo">
+        <div class="flex flex-col items-center justify-center px-6 py-8 lg:py-0 lg:mt-5">
+            <img class="w-18 h-18 md:w-28 md:h-28 mb-5" src="../../images/logo-l.svg" alt="logo">
             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-lg xl:p-0 ">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                        Tra cứu biển số xe
+                        Nhập biển số xe
                     </h1>
                     <div class="w-full max-w-md min-w-[200px]">
                         <div class="relative flex items-center">
@@ -70,7 +70,7 @@
 
                             <input
                                 class="vehicle_input w-full placeholder:text-slate-400 text-slate-700 text-sm border border-slate-600 rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                placeholder="VD: 54Y1-12345" />
+                                placeholder="VD: 54Y112345" />
 
                             <button
                                 class="searh_btn rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
@@ -81,8 +81,8 @@
                     </div>
                 </div>
                 <div class="info pb-8">
-                    <div class="flex justify-around items-center">
-                        <div>
+                    <div class="flex items-center justify-center flex-col gap-5">
+                        <div class="flex items-center justify-center flex-col">
                             <h1 class="text-base font-bold leading-tight tracking-tight text-gray-900 md:text-xl">
                                 Biển số xe
                             </h1>
@@ -91,13 +91,31 @@
                                 ----
                             </h1>
                         </div>
-                        <div>
+                        <div class="flex items-center justify-center flex-col">
+                            <h1 class="text-base font-bold leading-tight tracking-tight text-gray-900 md:text-xl">
+                                Nhà cung cấp
+                            </h1>
+                            <h1
+                                class="supplier mt-3 text-sm font-bold leading-tight tracking-tight text-bg-color md:text-lg">
+                                ----
+                            </h1>
+                        </div>
+                        <div class="flex items-center justify-center flex-col">
                             <h1 class="text-base font-bold leading-tight tracking-tight text-gray-900 md:text-xl">
                                 Số thứ tự
                             </h1>
                             <h1
-                                class="vehicle_queue mt-3 text-sm font-bold leading-tight tracking-tight text-bg-color md:text-lg">
-                                --
+                                class="vehicle_queue mt-3 text-3xl font-bold leading-tight tracking-tight text-bg-color md:text-4xl">
+                                ---
+                            </h1>
+                        </div>
+                        <div class="flex items-center justify-center flex-col">
+                            <h1 class="text-base font-bold leading-tight tracking-tight text-gray-900 md:text-xl">
+                                Trạng thái
+                            </h1>
+                            <h1
+                                class="status mt-3 text-sm font-bold leading-tight tracking-tight text-white md:text-lg inline-block rounded-lg px-4 py-4">
+                                N/A
                             </h1>
                         </div>
                     </div>

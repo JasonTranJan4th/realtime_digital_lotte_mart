@@ -52,6 +52,12 @@ h6 {
     overflow-wrap: break-word;
 }
 
+:root {
+    --success: #05b259;
+    --danger: #fb0003;
+    --normal: #ebf10a;
+}
+
 body {
     font-family: "Sora", sans-serif;
     line-height: 1.5;
@@ -61,4 +67,25 @@ body {
     padding: 0.694vw;
     margin: 0 auto;
     font-size: 1.111vw;
+}
+
+.status_success {
+    background-color: var(--success);
+    color: white;
+    animation: blink 1.5s infinite;
+}
+
+.status_normal {
+    background-color: var(--normal);
+}
+
+.status_danger {
+    background-color: var(--danger);
+}
+
+@keyframes blink {
+    50% {
+        background-color: white;
+        color: black;
+    }
 }
