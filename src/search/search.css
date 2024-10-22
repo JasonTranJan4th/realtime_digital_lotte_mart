@@ -56,6 +56,8 @@ h6 {
     --success: #05b259;
     --danger: #fb0003;
     --normal: #ebf10a;
+    --pending: #1e293b;
+    --finished: #3440eb;
 }
 
 body {
@@ -81,6 +83,14 @@ body {
 
 .status_danger {
     background-color: var(--danger);
+}
+
+.status_pendding {
+    background-color: var(--pending);
+}
+
+.status_finished {
+    background-color: var(--finished);
 }
 
 @keyframes blink {

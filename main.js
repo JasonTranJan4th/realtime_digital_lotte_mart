@@ -36,27 +36,31 @@ const initExtractSupplierCode = (data) => {
 }
 
 const initLoadData = (data, type) => {
-    const newData = extractData(data, type)[0].importRegistration.sort(function (a, b) { return a.queue_number - b.queue_number });
+    const dataArray = extractData(data, type);
 
-    initExtractSupplierCode(newData);
-    addMoreLine(newData, type);
+    if (dataArray.length > 0) {
+        const newData = dataArray[0].importRegistration.sort(function (a, b) { return a.queue_number - b.queue_number });
 
-    const rootEle = document.querySelector(`.${type}`);
-    if (rootEle) {
-        const tBody = rootEle.getElementsByTagName("tbody")[0];
-        if (tBody) {
-            let trEle = newData.map((x, index) => {
-                while (index <= 9) {
-                    return `
+        initExtractSupplierCode(newData);
+        addMoreLine(newData, type);
+
+        const rootEle = document.querySelector(`.${type}`);
+        if (rootEle) {
+            const tBody = rootEle.getElementsByTagName("tbody")[0];
+            if (tBody) {
+                let trEle = newData.map((x, index) => {
+                    while (index <= 9) {
+                        return `
                         <tr class="bg-white border-b h-14">
-                        <th scope="row" class="whitespace-nowrap">${x.queue_number}</th>
+                        <th scope="row" class="whitespace-nowrap">${x.product_type === "cool" ? `${x.queue_number}L` : `${x.queue_number}N`}</th>
                         <td class="">${x.license_plate}</td>
                         <td class="">${x.supplier}</td>
                     </tr>
                     `
-                }
-            }).join("");
-            tBody.innerHTML = trEle;
+                    }
+                }).join("");
+                tBody.innerHTML = trEle;
+            }
         }
     }
 }

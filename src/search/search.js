@@ -1,6 +1,17 @@
 import vehicleInfo from "../../api/vehicleInfo";
 
 let timeOutId = undefined;
+
+const reFormatString = (stringValue) => {
+    const customItems = stringValue.split("\n");
+
+    for (let i = 0; i < customItems.length; i++) {
+        customItems[i] = customItems[i] + "<br>";
+    }
+
+    return customItems.join("");
+}
+
 (() => {
 
     const navList = document.querySelectorAll("ol li");
@@ -39,7 +50,6 @@ let timeOutId = undefined;
                 async function fetchDataAndReload() {
                     try {
                         const { data } = await vehicleInfo.getInfo(input.value);
-                        console.log(data);
                         const infoEle = document.querySelector(".info");
 
                         if (infoEle) {
@@ -47,25 +57,33 @@ let timeOutId = undefined;
                             const vehicleQueueEle = infoEle.querySelector(".vehicle_queue");
                             const supplier = infoEle.querySelector(".supplier");
                             const status = infoEle.querySelector(".status");
-                            status.classList.remove("status_success", "status_normal", "status_danger");
+                            status.classList.remove("status_success", "status_normal", "status_danger", "status_pendding", "status_finished");
 
                             if (vehicleNumberEle && vehicleQueueEle && supplier && status) {
                                 vehicleNumberEle.textContent = data.license_plate;
-                                vehicleQueueEle.textContent = data.queue_number;
-                                supplier.textContent = data.supplier;
+                                vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
+                                supplier.innerHTML = reFormatString(data.supplier);
 
                                 switch (data.status) {
+                                    case -1:
+                                        status.textContent = "Đăng ký bị hủy";
+                                        status.classList.add("status_danger");
+                                        break;
                                     case 0:
+                                        status.textContent = "Chưa cấp số";
+                                        status.classList.add("status_pendding");
+                                        break;
+                                    case 1:
                                         status.textContent = "Chờ xuống hàng";
                                         status.classList.add("status_normal");
                                         break;
-                                    case 1:
+                                    case 2:
                                         status.textContent = "Xuống hàng";
                                         status.classList.add("status_success");
                                         break;
-                                    case 2:
+                                    case 3:
                                         status.textContent = "Đã xuống hàng";
-                                        status.classList.add("status_danger");
+                                        status.classList.add("status_finished");
                                         break;
 
                                     default:
@@ -103,7 +121,7 @@ let timeOutId = undefined;
 
             clearTimeout(timeOutId);
 
-            alert("BIỂN SỐ XE KHÔNG ĐÚNG HOẶC CHƯA ĐƯỢC CẤP SỐ.")
+            alert("BIỂN SỐ XE KHÔNG ĐÚNG HOẶC CHƯA ĐĂNG KÝ.")
         }
     })
 })();
