@@ -49,7 +49,12 @@ const reFormatString = (stringValue) => {
 
                 async function fetchDataAndReload() {
                     try {
+                        input.addEventListener('input', function () {
+                            clearTimeout(timeOutId);
+                        })
+
                         const { data } = await vehicleInfo.getInfo(input.value);
+                        // console.log(data);
                         const infoEle = document.querySelector(".info");
 
                         if (infoEle) {
@@ -68,7 +73,7 @@ const reFormatString = (stringValue) => {
                                         vehicleQueueEle.textContent = "0";
                                         status.textContent = "Đăng ký bị hủy";
                                         status.classList.add("status_danger");
-                                        break;
+                                        return;
                                     case 0:
                                         vehicleQueueEle.textContent = "0";
                                         status.textContent = "Chưa cấp số";
@@ -88,7 +93,7 @@ const reFormatString = (stringValue) => {
                                         vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
                                         status.textContent = "Đã xuống hàng";
                                         status.classList.add("status_finished");
-                                        break;
+                                        return;
 
                                     default:
                                         break;
