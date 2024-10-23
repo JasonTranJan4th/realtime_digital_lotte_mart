@@ -61,27 +61,31 @@ const reFormatString = (stringValue) => {
 
                             if (vehicleNumberEle && vehicleQueueEle && supplier && status) {
                                 vehicleNumberEle.textContent = data.license_plate;
-                                vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
                                 supplier.innerHTML = reFormatString(data.supplier);
 
                                 switch (data.status) {
                                     case -1:
+                                        vehicleQueueEle.textContent = "0";
                                         status.textContent = "Đăng ký bị hủy";
                                         status.classList.add("status_danger");
                                         break;
                                     case 0:
+                                        vehicleQueueEle.textContent = "0";
                                         status.textContent = "Chưa cấp số";
                                         status.classList.add("status_pendding");
                                         break;
                                     case 1:
+                                        vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
                                         status.textContent = "Chờ xuống hàng";
                                         status.classList.add("status_normal");
                                         break;
                                     case 2:
+                                        vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
                                         status.textContent = "Xuống hàng";
                                         status.classList.add("status_success");
                                         break;
                                     case 3:
+                                        vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
                                         status.textContent = "Đã xuống hàng";
                                         status.classList.add("status_finished");
                                         break;
