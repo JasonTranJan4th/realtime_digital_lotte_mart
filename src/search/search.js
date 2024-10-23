@@ -119,7 +119,7 @@ const reFormatString = (stringValue) => {
                     vehicleQueueEle.textContent = "--";
                     supplier.textContent = "----";
                     status.textContent = "N/A";
-                    status.classList.remove("status_success", "status_normal", "status_danger");
+                    status.classList.remove("status_success", "status_normal", "status_danger", "status_pendding", "status_finished");
                 }
             }
 

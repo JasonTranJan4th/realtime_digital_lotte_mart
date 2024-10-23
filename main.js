@@ -31,7 +31,7 @@ const addMoreLine = (data, type) => {
 
 const initExtractSupplierCode = (data) => {
     data.map((x) => {
-        x.supplier = x.supplier.split("\n").map(x => x.split("-")[0].trim()).join(", ").toUpperCase();
+        x.supplier = x.supplier.split("\n").map(x => x.split("-")[1].trim()).join(", ");
     })
 }
 
@@ -52,9 +52,9 @@ const initLoadData = (data, type) => {
                     while (index <= 9) {
                         return `
                         <tr class="bg-white border-b h-14">
-                        <th scope="row" class="whitespace-nowrap">${x.product_type === "cool" ? `${x.queue_number}L` : `${x.queue_number}N`}</th>
+                        <th scope="row" class="whitespace-nowrap">${x.queue_number === "" ? "" : (x.product_type === "cool" ? `${x.queue_number}L` : `${x.queue_number}N`)}</th>
                         <td class="">${x.license_plate}</td>
-                        <td class="">${x.supplier}</td>
+                        <td class="line-clamp-2">${x.supplier}</td>
                     </tr>
                     `
                     }
