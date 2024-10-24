@@ -52,9 +52,9 @@ const initLoadData = (data, type) => {
                     while (index <= 9) {
                         return `
                         <tr class="bg-white border-b h-14">
-                        <th scope="row" class="whitespace-nowrap">${x.queue_number === "" ? "" : (x.product_type === "cool" ? `${x.queue_number}L` : `${x.queue_number}N`)}</th>
+                        <th scope="row" class="whitespace-nowrap">${x.queue_number === "" ? "" : (x.vehicle_type === "bike" ? `${x.queue_number}M` : x.vehicle_type === "truck" ? `${x.queue_number}T` : `${x.queue_number}L`)}</th>
                         <td class="">${x.license_plate}</td>
-                        <td class="line-clamp-2">${x.supplier}</td>
+                        <td class=${x.supplier.includes(",") ? "line-clamp-2" : ""}>${x.supplier}</td>
                     </tr>
                     `
                     }
@@ -97,6 +97,8 @@ const initLoadData = (data, type) => {
             initLoadData(data, VEHICLE_TYPE[0]);
             initLoadData(data, VEHICLE_TYPE[1]);
             initLoadData(data, VEHICLE_TYPE[2]);
+            // console.log(VEHICLE_TYPE[2]);
+            // console.log(data.filter(x => x.vehicleType.toUpperCase() === VEHICLE_TYPE[2].toUpperCase()));
             // console.log("run")
 
         } catch (error) {
