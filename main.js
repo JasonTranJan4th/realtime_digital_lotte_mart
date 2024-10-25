@@ -48,25 +48,39 @@ const initLoadData = (data, type) => {
         if (rootEle) {
             const tBody = rootEle.getElementsByTagName("tbody")[0];
             if (tBody) {
-                let trEle = newData.map((x, index) => {
-                    while (index <= 9) {
-                        return `
-                        <tr class="bg-white border-b h-14">
-                        <th scope="row" class="whitespace-nowrap">${x.queue_number === "" ? "" : (x.vehicle_type === "bike" ? `${x.queue_number}M` : x.vehicle_type === "truck" ? `${x.queue_number}T` : `${x.queue_number}L`)}</th>
-                        <td class="">${x.license_plate}</td>
-                        <td class=${x.supplier.includes(",") ? "line-clamp-2" : ""}>${x.supplier}</td>
-                    </tr>
-                    `
-                    }
-                }).join("");
-                tBody.innerHTML = trEle;
+                if (type === "truck") {
+                    let trEle = newData.map((x, index) => {
+                        while (index <= 4) {
+                            return `
+                            <tr class="bg-white border-b h-14">
+                            <th scope="row" class="whitespace-nowrap">${x.queue_number === "" ? "" : (x.vehicle_type === "bike" ? `${x.queue_number}M` : x.vehicle_type === "truck" ? `${x.queue_number}T` : `${x.queue_number}L`)}</th>
+                            <td class="">${x.license_plate}</td>
+                            <td class=${x.supplier.includes(",") || x.supplier.length > 50 ? "line-clamp-2" : ""}>${x.supplier}</td>
+                        </tr>
+                        `
+                        }
+                    }).join("");
+                    tBody.innerHTML = trEle;
+                } else {
+                    let trEle = newData.map((x, index) => {
+                        while (index <= 9) {
+                            return `
+                            <tr class="bg-white border-b h-14">
+                            <th scope="row" class="whitespace-nowrap">${x.queue_number === "" ? "" : (x.vehicle_type === "bike" ? `${x.queue_number}M` : x.vehicle_type === "truck" ? `${x.queue_number}T` : `${x.queue_number}L`)}</th>
+                            <td class="">${x.license_plate}</td>
+                            <td class=${x.supplier.includes(",") || x.supplier.length > 50 ? "line-clamp-2" : ""}>${x.supplier}</td>
+                        </tr>
+                        `
+                        }
+                    }).join("");
+                    tBody.innerHTML = trEle;
+                }
             }
         }
     }
 }
 
 (() => {
-
     const navList = document.querySelectorAll("ol li");
     for (let i = 0; i < navList.length; i++) {
         const navEle = navList[i];
@@ -97,9 +111,6 @@ const initLoadData = (data, type) => {
             initLoadData(data, VEHICLE_TYPE[0]);
             initLoadData(data, VEHICLE_TYPE[1]);
             initLoadData(data, VEHICLE_TYPE[2]);
-            // console.log(VEHICLE_TYPE[2]);
-            // console.log(data.filter(x => x.vehicleType.toUpperCase() === VEHICLE_TYPE[2].toUpperCase()));
-            // console.log("run")
 
         } catch (error) {
             console.log("Failed to fetch data from server", error);
