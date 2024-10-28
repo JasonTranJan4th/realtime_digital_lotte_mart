@@ -41,7 +41,7 @@ const initLoadData = (data, type) => {
     if (dataArray.length > 0) {
         const newData = dataArray[0].importRegistration.sort(function (a, b) { return a.queue_number - b.queue_number });
 
-        initExtractSupplierCode(newData);
+        // initExtractSupplierCode(newData);
         addMoreLine(newData, type);
 
         const rootEle = document.querySelector(`.${type}`);

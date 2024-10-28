@@ -66,7 +66,16 @@ const reFormatString = (stringValue) => {
 
                             if (vehicleNumberEle && vehicleQueueEle && supplier && status) {
                                 vehicleNumberEle.textContent = data.license_plate;
-                                supplier.innerHTML = reFormatString(data.supplier);
+                                supplier.textContent = reFormatString(data.supplier);
+
+                                supplier.classList.remove("line-clamp-2");
+
+                                if (reFormatString(data.supplier).includes("<br>")) {
+                                    supplier.innerHTML = reFormatString(data.supplier);
+                                } else {
+                                    supplier.textContent = reFormatString(data.supplier);
+                                    supplier.classList.add("line-clamp-2");
+                                }
 
                                 switch (data.status) {
                                     case -1:
@@ -80,17 +89,17 @@ const reFormatString = (stringValue) => {
                                         status.classList.add("status_pendding");
                                         break;
                                     case 1:
-                                        vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
+                                        vehicleQueueEle.textContent = data.vehicle_type === "bike" ? `${data.queue_number}M` : data.vehicle_type === "truck" ? `${data.queue_number}T` : `${data.queue_number}L`;
                                         status.textContent = "Chờ xuống hàng";
                                         status.classList.add("status_normal");
                                         break;
                                     case 2:
-                                        vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
+                                        vehicleQueueEle.textContent = data.vehicle_type === "bike" ? `${data.queue_number}M` : data.vehicle_type === "truck" ? `${data.queue_number}T` : `${data.queue_number}L`;
                                         status.textContent = "Xuống hàng";
                                         status.classList.add("status_success");
                                         break;
                                     case 3:
-                                        vehicleQueueEle.textContent = data.product_type === "cool" ? `${data.queue_number}L` : `${data.queue_number}N`;
+                                        vehicleQueueEle.textContent = data.vehicle_type === "bike" ? `${data.queue_number}M` : data.vehicle_type === "truck" ? `${data.queue_number}T` : `${data.queue_number}L`;
                                         status.textContent = "Đã xuống hàng";
                                         status.classList.add("status_finished");
                                         return;
